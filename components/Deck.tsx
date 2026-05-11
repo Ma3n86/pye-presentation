@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Slide from "./Slide";
 import Counter from "./Counter";
@@ -28,17 +28,21 @@ export default function Deck() {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
   const total = slides.length;
+  const lastClickRef = useRef(0);
 
+  // Stable scroll-to helper — slides array is module-level so no deps needed
+  const goTo = useCallback((i: number) => {
+    const el = document.getElementById(slides[i]?.id ?? "");
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
+  // Keyboard navigation (ArrowRight added for clicker remotes)
   useEffect(() => {
-    const goTo = (i: number) => {
-      const el = document.getElementById(slides[i]?.id ?? "");
-      if (el) el.scrollIntoView({ behavior: "smooth" });
-    };
     const onKey = (e: KeyboardEvent) => {
-      if (["ArrowDown", "PageDown", " "].includes(e.key)) {
+      if (["ArrowDown", "ArrowRight", "PageDown", " "].includes(e.key)) {
         e.preventDefault();
         goTo(Math.min(active + 1, total - 1));
-      } else if (["ArrowUp", "PageUp"].includes(e.key)) {
+      } else if (["ArrowUp", "ArrowLeft", "PageUp"].includes(e.key)) {
         e.preventDefault();
         goTo(Math.max(active - 1, 0));
       } else if (e.key === "Home") {
@@ -51,7 +55,36 @@ export default function Deck() {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [active, total]);
+  }, [active, total, goTo]);
+
+  // Left-click anywhere advances one slide (presentation clicker support)
+  useEffect(() => {
+    const COOLDOWN_MS = 500;
+    const INTERACTIVE = new Set(["A", "BUTTON", "INPUT", "TEXTAREA", "SELECT"]);
+
+    const onClick = (e: MouseEvent) => {
+      if (e.button !== 0) return;
+      // Ignore clicks on or inside interactive elements
+      let node = e.target as HTMLElement | null;
+      while (node && node !== scrollerRef.current) {
+        if (
+          INTERACTIVE.has(node.tagName) ||
+          node.getAttribute("role") === "button" ||
+          node.hasAttribute("data-no-click-nav")
+        ) return;
+        node = node.parentElement;
+      }
+      // One transition per cooldown window — prevents double-skip
+      const now = Date.now();
+      if (now - lastClickRef.current < COOLDOWN_MS) return;
+      lastClickRef.current = now;
+      if (active < total - 1) goTo(active + 1);
+    };
+
+    const container = scrollerRef.current;
+    container?.addEventListener("click", onClick);
+    return () => container?.removeEventListener("click", onClick);
+  }, [active, total, goTo]);
 
   useEffect(() => {
     const obs = new IntersectionObserver(
