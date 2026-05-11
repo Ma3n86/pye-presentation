@@ -999,7 +999,7 @@ function FakhoriThanksSlide({ idx, total }: { idx: number; total: number }) {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ amount: 0.4, once: true }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-8"
+          className="mb-10"
         >
           <BrandLogo type="fakhoury" size="xl" />
         </motion.div>
@@ -1010,16 +1010,16 @@ function FakhoriThanksSlide({ idx, total }: { idx: number; total: number }) {
           viewport={{ amount: 0.4, once: true }}
           transition={{ duration: 0.7, delay: 0.2 }}
         >
-          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-pye-leaf/50 bg-pye-leaf/8 px-5 py-2 text-sm font-bold text-pye-forest">
+          <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-pye-leaf/50 bg-pye-leaf/8 px-6 py-3 text-base font-bold text-pye-forest md:text-xl">
             الداعم الرئيسي
           </div>
-          <h2 className="text-4xl font-black text-pye-forest md:text-6xl">
+          <h2 className="text-[34px] font-black leading-tight text-pye-forest md:text-[56px]">
             شكراً لمبادرة توفيق ونعمت فاخوري
           </h2>
-          <p className="mt-3 text-lg font-medium text-pye-sky md:text-xl">
+          <p className="mt-5 text-xl font-medium text-pye-sky md:text-[26px]">
             الداعم الرئيسي لمشروع PYE
           </p>
-          <p className="mx-auto mt-8 max-w-2xl text-lg font-light leading-loose text-pye-ink/70 md:text-xl">
+          <p className="mx-auto mt-6 max-w-2xl text-base font-light leading-loose text-pye-ink/70 md:text-lg">
             نتقدم بجزيل الشكر والتقدير إلى مبادرة توفيق ونعمت فاخوري، الداعم الرئيسي لمشروع PYE،
             على مساهمتهم في دعم مسارات التدريب والتوظيف وتمكين الشباب وفتح آفاق جديدة نحو سوق العمل.
           </p>
