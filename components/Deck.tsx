@@ -467,16 +467,9 @@ function TimelineSlide({ idx, total }: { idx: number; total: number }) {
     >
       {/* Title row — mirrors the reference */}
       <div dir="ltr" className="mb-14 flex items-start justify-between gap-4">
-        <div>
-          <h2 className="text-4xl font-black leading-tight text-pye-forest md:text-6xl">
-            Timeline Review
-          </h2>
-          <p className="mt-2 text-sm font-medium text-pye-ink/50 tabular">
-            September 2024 – March 2026
-            <span className="mx-2 text-pye-sky/60">·</span>
-            <span dir="rtl">سبتمبر 2024 – مارس 2026</span>
-          </p>
-        </div>
+        <h2 className="text-4xl font-black leading-tight text-pye-forest md:text-6xl">
+          Timeline Review
+        </h2>
         <BrandLogo type="fakhoury" size="md" />
       </div>
 
@@ -546,6 +539,26 @@ function TimelineSlide({ idx, total }: { idx: number; total: number }) {
                   ))}
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* ── Date endpoints: start left, end right ─────────────────── */}
+          <div className="mt-6 flex items-start justify-between">
+            <div>
+              <div className="text-[9px] font-bold uppercase tracking-[0.25em] text-pye-sky md:text-[10px]">
+                Start · بداية المشروع
+              </div>
+              <div className="mt-0.5 text-sm font-bold tabular text-pye-forest">
+                September 2024
+              </div>
+            </div>
+            <div className="text-right">
+              <div className="text-[9px] font-bold uppercase tracking-[0.25em] text-pye-sky md:text-[10px]">
+                End · نهاية المشروع
+              </div>
+              <div className="mt-0.5 text-sm font-bold tabular text-pye-forest">
+                March 2026
+              </div>
             </div>
           </div>
         </div>
