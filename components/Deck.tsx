@@ -14,9 +14,8 @@ const slides = [
   { id: "idea", label: "فكرة المشروع" },
   { id: "stages", label: "مراحل المشروع" },
   { id: "timeline", label: "المسار" },
-  { id: "goal", label: "الهدف" },
   { id: "universities", label: "الجامعات" },
-  { id: "readiness", label: "الجاهزية المهنية" },
+  { id: "readiness", label: "الورشات التحضيرية لسوق العمل" },
   { id: "tech", label: "التدريب التقني" },
   { id: "partnerships", label: "الشراكات" },
   { id: "impact", label: "الأثر" },
@@ -119,13 +118,12 @@ export default function Deck() {
       <IdeaSlide idx={4} total={total} />
       <StagesSlide idx={5} total={total} />
       <TimelineSlide idx={6} total={total} />
-      <GoalSlide idx={7} total={total} />
-      <UniversitiesSlide idx={8} total={total} />
-      <ReadinessSlide idx={9} total={total} />
-      <TechSlide idx={10} total={total} />
-      <PartnershipsSlide idx={11} total={total} />
-      <ImpactSlide idx={12} total={total} />
-      <ClosingSlide idx={13} total={total} />
+      <UniversitiesSlide idx={7} total={total} />
+      <ReadinessSlide idx={8} total={total} />
+      <TechSlide idx={9} total={total} />
+      <PartnershipsSlide idx={10} total={total} />
+      <ImpactSlide idx={11} total={total} />
+      <ClosingSlide idx={12} total={total} />
     </main>
   );
 }
@@ -419,15 +417,43 @@ function StagesSlide({ idx, total }: { idx: number; total: number }) {
 }
 
 /* =========================================================================
-   TIMELINE — 3 cohorts × stages (now light)
+   TIMELINE — horizontal presentation timeline, reference style
    ========================================================================= */
 function TimelineSlide({ idx, total }: { idx: number; total: number }) {
   const cohorts = [
-    { name: "Cohort 1", count: "364" },
-    { name: "Cohort 2", count: "369" },
-    { name: "Cohort 3", count: "590" },
+    {
+      name: "Cohort 1",
+      count: "364",
+      stages: [
+        { label: "Soft skills training" },
+        { label: "Technical training" },
+        { label: "Internship" },
+        { label: "Employment" },
+      ],
+    },
+    {
+      name: "Cohort 2",
+      count: "369",
+      stages: [
+        { label: "Soft skills training" },
+        { label: "Technical training" },
+        { label: "Internship" },
+        { label: "Employment" },
+      ],
+    },
+    {
+      name: "Cohort 3",
+      count: "590",
+      stages: [
+        { label: "Soft skills training" },
+        { label: "Technical training" },
+        { label: "Internship" },
+        { label: "Employment" },
+        { label: "Closing ceremony" },
+      ],
+    },
   ];
-  const stages = ["Soft skills training", "Technical training", "Internship", "Employment"];
+
   return (
     <Slide
       id="timeline"
@@ -439,85 +465,85 @@ function TimelineSlide({ idx, total }: { idx: number; total: number }) {
         <CircuitPattern
           className="left-[8%] bottom-16 h-[38vh] w-[32vw]"
           variant="scattered"
-          opacity={0.34}
+          opacity={0.18}
         />
       }
     >
-      <h2 className="mb-10 text-4xl font-black text-pye-forest md:text-5xl">المسار</h2>
+      {/* Title row — mirrors the reference */}
+      <div dir="ltr" className="mb-14 flex items-start justify-between gap-4">
+        <h2 className="text-4xl font-black leading-tight text-pye-forest md:text-6xl">
+          Timeline Review
+        </h2>
+        <BrandLogo type="fakhoury" size="md" />
+      </div>
 
-      <div className="space-y-5">
-        {cohorts.map((c, ci) => (
-          <motion.div
-            key={c.name}
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ amount: 0.4, once: true }}
-            transition={{ duration: 0.55, delay: ci * 0.12 }}
-            className="rounded-2xl border border-pye-fog bg-white p-6 shadow-[0_1px_0_rgba(0,0,0,0.02)]"
-          >
-            <div className="mb-4 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <span className="inline-flex h-7 items-center rounded-full bg-pye-forest px-3 text-xs font-bold uppercase tracking-[0.25em] text-white">
+      {/* Timeline — horizontally scrollable on narrow screens */}
+      <div dir="ltr" className="-mx-2 overflow-x-auto px-2 pb-4">
+        <div className="relative min-w-[640px]">
+
+          {/* ── Cohort label row ─────────────────────────────────────── */}
+          <div className="mb-5 flex">
+            {cohorts.map((c, ci) => (
+              <div
+                key={c.name}
+                style={{ flex: c.stages.length }}
+                className={`${ci > 0 ? "border-l-2 border-pye-forest/30 pl-3" : ""}`}
+              >
+                <span className="text-sm font-bold tracking-wide text-pye-forest md:text-base">
                   {c.name}
                 </span>
+                <span className="ml-2 tabular text-[10px] text-pye-ink/45">
+                  {c.count} مستفيد
+                </span>
               </div>
-              <span className="text-xs tabular text-pye-ink/55">{c.count} مستفيد</span>
-            </div>
-            <div dir="ltr" className="flex flex-wrap items-center gap-x-3 gap-y-2">
-              {stages.map((s, si) => (
-                <div key={s} className="flex items-center gap-3">
-                  <span className="whitespace-nowrap rounded-full border border-pye-sky/50 bg-pye-sky/[0.08] px-4 py-2 text-sm text-pye-ink">
-                    {s}
-                  </span>
-                  {si < stages.length - 1 && (
-                    <span aria-hidden className="text-pye-sky" lang="en">→</span>
-                  )}
+            ))}
+          </div>
+
+          {/* ── Timeline line + dots ──────────────────────────────────── */}
+          <div className="relative">
+            {/* Single continuous horizontal line */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0 top-[10px] z-0 h-px bg-pye-sky/55"
+            />
+
+            <div className="flex">
+              {cohorts.map((c, ci) => (
+                <div
+                  key={c.name}
+                  style={{ flex: c.stages.length }}
+                  className={`flex ${ci > 0 ? "border-l-2 border-pye-forest/25" : ""}`}
+                >
+                  {c.stages.map((s, si) => (
+                    <motion.div
+                      key={s.label}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ amount: 0.5, once: true }}
+                      transition={{
+                        duration: 0.4,
+                        delay: (ci * 4 + si) * 0.055,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                      className="flex flex-1 flex-col items-center"
+                    >
+                      {/* Milestone dot */}
+                      <div className="relative z-10 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-pye-forest bg-white shadow-sm">
+                        <div className="h-2 w-2 rounded-full bg-pye-leaf" />
+                      </div>
+
+                      {/* Stage label */}
+                      <p className="mt-4 max-w-[72px] text-center text-[9px] font-medium leading-snug text-pye-ink/70 md:text-[11px]">
+                        {s.label}
+                      </p>
+                    </motion.div>
+                  ))}
                 </div>
               ))}
             </div>
-          </motion.div>
-        ))}
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ amount: 0.4, once: true }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="mt-6 inline-flex items-center gap-3 rounded-full border-2 border-pye-leaf px-5 py-3 text-sm font-bold text-pye-forest"
-        >
-          <span className="h-2 w-2 rounded-full bg-pye-leaf" />
-          Closing ceremony
-        </motion.div>
+          </div>
+        </div>
       </div>
-    </Slide>
-  );
-}
-
-/* =========================================================================
-   GOAL
-   ========================================================================= */
-function GoalSlide({ idx, total }: { idx: number; total: number }) {
-  return (
-    <Slide
-      id="goal"
-      index={idx}
-      total={total}
-      variant="paper"
-      eyebrow="06 — الهدف"
-      decoration={
-        <CircuitPattern
-          className="left-[6%] bottom-16 h-[48vh] w-[36vw]"
-          variant="left"
-          opacity={0.4}
-        />
-      }
-    >
-      <h2 className="text-4xl font-black text-pye-forest md:text-6xl">الهدف</h2>
-      <p className="mt-8 max-w-4xl text-2xl font-light leading-relaxed text-pye-ink/85 md:text-3xl">
-        صُمّم المشروع ليكون أكثر من مجرد تدريب،
-        <br />
-        بل <span className="font-bold text-pye-forest">تجربة متكاملة</span> تساعد الشباب على اكتساب المهارات، وخوض تجربة عملية حقيقية، والاستعداد للانتقال إلى سوق العمل بثقة أكبر.
-      </p>
     </Slide>
   );
 }
@@ -531,8 +557,9 @@ function UniversitiesSlide({ idx, total }: { idx: number; total: number }) {
     { name: "الجامعة الهاشمية", count: 242 },
     { name: "جامعة الأميرة سمية", count: 98 },
     { name: "الجامعة الألمانية", count: 68 },
-    { name: "جامعة الشرق الأوسط", count: 33 },
     { name: "جامعة اليرموك", count: 78 },
+    { name: "جامعة الشرق الأوسط", count: 33 },
+    { name: "جامعة الحسين التقنية", count: 10 },
   ];
   return (
     <Slide
@@ -540,7 +567,7 @@ function UniversitiesSlide({ idx, total }: { idx: number; total: number }) {
       index={idx}
       total={total}
       variant="white"
-      eyebrow="07 — الجامعات"
+      eyebrow="06 — الجامعات"
       decoration={
         <CircuitPattern
           className="left-1/4 bottom-12 h-[34vh] w-[40vw]"
@@ -555,7 +582,7 @@ function UniversitiesSlide({ idx, total }: { idx: number; total: number }) {
             الجامعات الشريكة
           </h2>
           <div className="mt-10 space-y-7">
-            <Metric label="جامعات تم استقطابها" value={6} />
+            <Metric label="جامعات تم استقطابها" value={7} />
             <Metric label="المتقدمون" value={1323} />
             <Metric label="العدد النهائي المقبول" value={475} accent />
           </div>
@@ -626,7 +653,7 @@ function ReadinessSlide({ idx, total }: { idx: number; total: number }) {
       index={idx}
       total={total}
       variant="paper"
-      eyebrow="08 — الجاهزية المهنية"
+      eyebrow="07 — الورشات التحضيرية لسوق العمل"
       decoration={
         <CircuitPattern
           className="left-1/4 top-1/3 h-[44vh] w-[50vw]"
@@ -636,7 +663,7 @@ function ReadinessSlide({ idx, total }: { idx: number; total: number }) {
       }
     >
       <h2 className="text-4xl font-black text-pye-forest md:text-6xl">
-        الجاهزية المهنية
+        الورشات التحضيرية لسوق العمل
       </h2>
       <div className="mt-12 grid gap-6 md:grid-cols-3">
         <StatCard value={6} label="مدربين" />
@@ -666,17 +693,88 @@ function StatCard({ value, label, suffix }: { value: number; label: string; suff
 }
 
 /* =========================================================================
-   TECH TRACKS — light cards
+   TECH TRACKS — light cards with icons
    ========================================================================= */
 function TechSlide({ idx, total }: { idx: number; total: number }) {
-  const tracks = ["CCNA", "QA", "Data Analysis", "UI/UX", "Cloud", "Cybersecurity"];
+  const tracks = [
+    {
+      name: "CCNA / Networking",
+      ar: "الشبكات",
+      icon: (
+        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="10" width="4" height="4" rx="1" />
+          <rect x="10" y="2" width="4" height="4" rx="1" />
+          <rect x="18" y="10" width="4" height="4" rx="1" />
+          <rect x="10" y="18" width="4" height="4" rx="1" />
+          <line x1="6" y1="12" x2="10" y2="12" />
+          <line x1="14" y1="12" x2="18" y2="12" />
+          <line x1="12" y1="6" x2="12" y2="10" />
+          <line x1="12" y1="14" x2="12" y2="18" />
+        </svg>
+      ),
+    },
+    {
+      name: "Quality Assurance",
+      ar: "ضمان الجودة",
+      icon: (
+        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <path d="M9 12l2 2 4-4" />
+        </svg>
+      ),
+    },
+    {
+      name: "Data Analysis",
+      ar: "تحليل البيانات",
+      icon: (
+        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <line x1="18" y1="20" x2="18" y2="10" />
+          <line x1="12" y1="20" x2="12" y2="4" />
+          <line x1="6" y1="20" x2="6" y2="14" />
+          <line x1="2" y1="20" x2="22" y2="20" />
+        </svg>
+      ),
+    },
+    {
+      name: "Data Science",
+      ar: "علم البيانات",
+      icon: (
+        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <ellipse cx="12" cy="5" rx="9" ry="3" />
+          <path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5" />
+          <path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3" />
+        </svg>
+      ),
+    },
+    {
+      name: "Full Stack Development",
+      ar: "تطوير الويب الكامل",
+      icon: (
+        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="16 18 22 12 16 6" />
+          <polyline points="8 6 2 12 8 18" />
+        </svg>
+      ),
+    },
+    {
+      name: "Cybersecurity",
+      ar: "الأمن السيبراني",
+      icon: (
+        <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+          <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+        </svg>
+      ),
+    },
+  ];
+
   return (
     <Slide
       id="tech"
       index={idx}
       total={total}
       variant="white"
-      eyebrow="09 — التدريب التقني"
+      eyebrow="08 — التدريب التقني"
       decoration={
         <CircuitPattern
           className="left-[8%] bottom-16 h-[42vh] w-[34vw]"
@@ -686,24 +784,28 @@ function TechSlide({ idx, total }: { idx: number; total: number }) {
       }
     >
       <h2 className="text-4xl font-black text-pye-forest md:text-6xl">
-        التدريب التقني
+        المسارات التدريبية التقنية
       </h2>
-      <p className="mt-3 text-lg text-pye-ink/70">المسارات التخصصية المقدّمة للمشاركين</p>
+      <p className="mt-3 text-lg text-pye-ink/70">
+        Technical Training Tracks — تدريب عملي متخصص يُجهّز المشاركين لسوق العمل
+      </p>
 
       <div className="mt-12 grid gap-4 md:grid-cols-3">
         {tracks.map((t, i) => (
           <motion.div
-            key={t}
+            key={t.name}
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ amount: 0.4, once: true }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
             className="group relative overflow-hidden rounded-2xl border border-pye-fog bg-white p-6 shadow-sm"
           >
+            <div className="mb-3 text-pye-sky">{t.icon}</div>
             <div className="text-xs font-bold uppercase tracking-[0.3em] text-pye-sky">
-              Track
+              Training Track
             </div>
-            <div className="mt-2 text-2xl font-bold text-pye-forest md:text-3xl">{t}</div>
+            <div className="mt-1 text-xl font-bold text-pye-forest md:text-2xl">{t.name}</div>
+            <div className="mt-0.5 text-sm text-pye-ink/55">{t.ar}</div>
             <motion.div
               className="absolute bottom-0 left-0 h-1 bg-pye-leaf"
               initial={{ width: 0 }}
@@ -728,7 +830,7 @@ function PartnershipsSlide({ idx, total }: { idx: number; total: number }) {
       index={idx}
       total={total}
       variant="paper"
-      eyebrow="10 — التدريب العملي والشراكات"
+      eyebrow="09 — التدريب العملي والشراكات"
       decoration={
         <CircuitPattern
           className="right-[8%] top-1/4 h-[40vh] w-[32vw]"
@@ -746,6 +848,12 @@ function PartnershipsSlide({ idx, total }: { idx: number; total: number }) {
         <BigStat value={82} label="أكملوا جميع المراحل" />
         <BigStat value={75} suffix="%" label="نسبة التوظيف" highlight />
       </div>
+      <p className="mt-8 max-w-3xl rounded-2xl border border-pye-sky/30 bg-pye-sky/5 px-6 py-4 text-base leading-relaxed text-pye-ink/75">
+        سيتم تنفيذ ودعم المسارات التدريبية بإشراف شركات تكنولوجيا المعلومات والشركاء من القطاع التقني.
+        <span className="mt-1 block text-sm text-pye-ink/50">
+          The training tracks will be supervised and supported by IT companies and industry partners.
+        </span>
+      </p>
     </Slide>
   );
 }
@@ -803,7 +911,7 @@ function ImpactSlide({ idx, total }: { idx: number; total: number }) {
       index={idx}
       total={total}
       variant="white"
-      eyebrow="11 — الأثر"
+      eyebrow="10 — الأثر"
       decoration={
         <CircuitPattern
           className="left-1/4 top-1/3 h-[44vh] w-[50vw]"
@@ -881,6 +989,22 @@ function ClosingSlide({ idx, total }: { idx: number; total: number }) {
           <ContactBlock label="Email" value="info@loyac" />
           <ContactBlock label="Phone" value="+962 6 4636001" ltr />
           <ContactBlock label="Web" value="loyacjordan.org" ltr />
+        </div>
+
+        <div className="w-full max-w-3xl">
+          <h3 className="mb-2 text-2xl font-bold text-pye-forest">
+            شكراً لشركائنا والداعمين
+          </h3>
+          <p className="mb-5 text-sm text-pye-ink/65">
+            We extend our appreciation to the companies and partners supporting the PYE Project and contributing to youth employment pathways.
+          </p>
+          <div className="overflow-hidden rounded-2xl border border-pye-fog bg-white p-6 shadow-sm">
+            <img
+              src="/brand/companies.jpg"
+              alt="Sponsoring and supporting companies of the PYE Project — شركات داعمة لمشروع مسارات توظيف الشباب"
+              className="mx-auto block max-h-[35vh] max-w-full object-contain"
+            />
+          </div>
         </div>
       </div>
     </Slide>
