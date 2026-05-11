@@ -1001,7 +1001,7 @@ function FakhoriThanksSlide({ idx, total }: { idx: number; total: number }) {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="mb-8"
         >
-          <BrandLogo type="fakhoury" size="lg" />
+          <BrandLogo type="fakhoury" size="xl" />
         </motion.div>
 
         <motion.div
@@ -1011,16 +1011,16 @@ function FakhoriThanksSlide({ idx, total }: { idx: number; total: number }) {
           transition={{ duration: 0.7, delay: 0.2 }}
         >
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-pye-leaf/50 bg-pye-leaf/8 px-5 py-2 text-sm font-bold text-pye-forest">
-            الشريك الاستراتيجي
+            الداعم الرئيسي
           </div>
           <h2 className="text-4xl font-black text-pye-forest md:text-6xl">
-            شكراً لمجموعة الفاخوري
+            شكراً لمبادرة توفيق ونعمت فاخوري
           </h2>
           <p className="mt-3 text-lg font-medium text-pye-sky md:text-xl">
-            الشريك الاستراتيجي لمشروع PYE
+            الداعم الرئيسي لمشروع PYE
           </p>
           <p className="mx-auto mt-8 max-w-2xl text-lg font-light leading-loose text-pye-ink/70 md:text-xl">
-            نتقدم بجزيل الشكر والتقدير إلى مجموعة الفاخوري، الشريك الاستراتيجي لمشروع PYE،
+            نتقدم بجزيل الشكر والتقدير إلى مبادرة توفيق ونعمت فاخوري، الداعم الرئيسي لمشروع PYE،
             على مساهمتهم في دعم مسارات التدريب والتوظيف وتمكين الشباب وفتح آفاق جديدة نحو سوق العمل.
           </p>
         </motion.div>
@@ -1149,7 +1149,7 @@ function ClosingSlide({ idx, total }: { idx: number; total: number }) {
         </div>
 
         <div className="grid w-full max-w-3xl gap-6 rounded-2xl border border-pye-fog bg-white p-8 shadow-sm md:grid-cols-3">
-          <ContactBlock label="Email" value="info@loyac" />
+          <ContactBlock label="Email" value="info@loyac.org" ltr />
           <ContactBlock label="Phone" value="+962 6 4636001" ltr />
           <ContactBlock label="Web" value="loyacjordan.org" ltr />
         </div>
