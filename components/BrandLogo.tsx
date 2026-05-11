@@ -39,7 +39,7 @@ const ASSETS: Record<LogoType, { src: string; w: number; h: number; alt: string 
     alt: "PYE Project — Pathways to Youth Employment",
   },
   fakhoury: {
-    src: "/brand/fakhori.png",
+    src: "/brand/fakhorihighqual.png",
     w: 799,
     h: 610,
     alt: "Tawfiq & Nimat Fakhouri Initiative — مبادرة توفيق و نعمت فاخوري",

@@ -13,12 +13,14 @@ const slides = [
   { id: "gap", label: "الفجوة" },
   { id: "idea", label: "فكرة المشروع" },
   { id: "stages", label: "مراحل المشروع" },
-  { id: "timeline", label: "المسار" },
+  { id: "timeline", label: "مراجعة الجدول الزمني" },
   { id: "universities", label: "الجامعات" },
   { id: "readiness", label: "الورشات التحضيرية لسوق العمل" },
   { id: "tech", label: "التدريب التقني" },
   { id: "partnerships", label: "الشراكات" },
   { id: "impact", label: "الأثر" },
+  { id: "fakhouri-thanks", label: "شكر مجموعة الفاخوري" },
+  { id: "partners-thanks", label: "شكر الشركاء" },
   { id: "closing", label: "الختام" },
 ];
 
@@ -123,7 +125,9 @@ export default function Deck() {
       <TechSlide idx={9} total={total} />
       <PartnershipsSlide idx={10} total={total} />
       <ImpactSlide idx={11} total={total} />
-      <ClosingSlide idx={12} total={total} />
+      <FakhoriThanksSlide idx={12} total={total} />
+      <PartnersThanksSlide idx={13} total={total} />
+      <ClosingSlide idx={14} total={total} />
     </main>
   );
 }
@@ -413,39 +417,39 @@ function StagesSlide({ idx, total }: { idx: number; total: number }) {
 }
 
 /* =========================================================================
-   TIMELINE — horizontal presentation timeline, reference style
+   TIMELINE — Arabic, horizontal, custom header
    ========================================================================= */
 function TimelineSlide({ idx, total }: { idx: number; total: number }) {
   const cohorts = [
     {
-      name: "Cohort 1",
+      name: "الفوج الأول",
       count: "364",
       stages: [
-        { label: "Soft skills training" },
-        { label: "Technical training" },
-        { label: "Internship" },
-        { label: "Employment" },
+        { label: "الورشات التحضيرية" },
+        { label: "التدريب التقني" },
+        { label: "التدريب العملي" },
+        { label: "التوظيف" },
       ],
     },
     {
-      name: "Cohort 2",
+      name: "الفوج الثاني",
       count: "369",
       stages: [
-        { label: "Soft skills training" },
-        { label: "Technical training" },
-        { label: "Internship" },
-        { label: "Employment" },
+        { label: "الورشات التحضيرية" },
+        { label: "التدريب التقني" },
+        { label: "التدريب العملي" },
+        { label: "التوظيف" },
       ],
     },
     {
-      name: "Cohort 3",
+      name: "الفوج الثالث",
       count: "590",
       stages: [
-        { label: "Soft skills training" },
-        { label: "Technical training" },
-        { label: "Internship" },
-        { label: "Employment" },
-        { label: "Closing ceremony" },
+        { label: "الورشات التحضيرية" },
+        { label: "التدريب التقني" },
+        { label: "التدريب العملي" },
+        { label: "التوظيف" },
+        { label: "الحفل الختامي" },
       ],
     },
   ];
@@ -456,6 +460,7 @@ function TimelineSlide({ idx, total }: { idx: number; total: number }) {
       index={idx}
       total={total}
       variant="white"
+      showHeader={false}
       eyebrow="05 — المسار الزمني"
       decoration={
         <CircuitPattern
@@ -465,17 +470,23 @@ function TimelineSlide({ idx, total }: { idx: number; total: number }) {
         />
       }
     >
-      {/* Title row — mirrors the reference */}
-      <div dir="ltr" className="mb-14 flex items-start justify-between gap-4">
-        <h2 className="text-4xl font-black leading-tight text-pye-forest md:text-6xl">
-          Timeline Review
-        </h2>
-        <BrandLogo type="fakhoury" size="md" />
-      </div>
+      {/* Custom header: Fakhori logo left — PYE logo center */}
+      <header className="pointer-events-none absolute inset-x-0 top-0 z-20 grid grid-cols-3 items-center px-6 py-5 md:px-10 md:py-6">
+        <BrandLogo type="fakhoury" size="lg" />
+        <div className="flex justify-center">
+          <BrandLogo type="pye" size="sm" />
+        </div>
+        <div />
+      </header>
+
+      {/* Arabic title */}
+      <h2 className="mb-10 text-4xl font-black leading-tight text-pye-forest md:text-6xl">
+        مراجعة الجدول الزمني
+      </h2>
 
       {/* Timeline — horizontally scrollable on narrow screens */}
       <div dir="ltr" className="-mx-2 overflow-x-auto px-2 pb-4">
-        <div className="relative min-w-[640px]">
+        <div className="relative min-w-[700px]">
 
           {/* ── Cohort label row ─────────────────────────────────────── */}
           <div className="mb-6 flex">
@@ -485,13 +496,13 @@ function TimelineSlide({ idx, total }: { idx: number; total: number }) {
                 style={{ flex: c.stages.length }}
                 className={`${ci > 0 ? "border-l-2 border-pye-forest/30 pl-3" : ""}`}
               >
-                <div className="text-xs font-bold uppercase tracking-[0.25em] text-pye-ink/45">
+                <div dir="rtl" className="text-xs font-bold tracking-wide text-pye-ink/45">
                   {c.name}
                 </div>
                 <div className="mt-0.5 text-3xl font-black tabular text-pye-forest md:text-4xl">
                   {c.count}
                 </div>
-                <div className="text-[10px] font-medium uppercase tracking-wide text-pye-ink/50">
+                <div dir="rtl" className="text-[10px] font-medium text-pye-ink/50">
                   مستفيد
                 </div>
               </div>
@@ -500,7 +511,6 @@ function TimelineSlide({ idx, total }: { idx: number; total: number }) {
 
           {/* ── Timeline line + dots ──────────────────────────────────── */}
           <div className="relative">
-            {/* Single continuous horizontal line */}
             <div
               aria-hidden
               className="pointer-events-none absolute inset-x-0 top-[10px] z-0 h-px bg-pye-sky/55"
@@ -532,7 +542,7 @@ function TimelineSlide({ idx, total }: { idx: number; total: number }) {
                       </div>
 
                       {/* Stage label */}
-                      <p className="mt-4 max-w-[72px] text-center text-[9px] font-medium leading-snug text-pye-ink/70 md:text-[11px]">
+                      <p dir="rtl" className="mt-4 w-full px-1 text-center text-[9px] font-medium leading-snug text-pye-ink/70 md:text-[11px]">
                         {s.label}
                       </p>
                     </motion.div>
@@ -542,22 +552,22 @@ function TimelineSlide({ idx, total }: { idx: number; total: number }) {
             </div>
           </div>
 
-          {/* ── Date endpoints: start left, end right ─────────────────── */}
+          {/* ── Date endpoints ─────────────────────────────────────────── */}
           <div className="mt-6 flex items-start justify-between">
             <div>
-              <div className="text-[9px] font-bold uppercase tracking-[0.25em] text-pye-sky md:text-[10px]">
-                Start · بداية المشروع
+              <div className="text-[9px] font-bold text-pye-sky md:text-[10px]">
+                بداية المشروع
               </div>
               <div className="mt-0.5 text-sm font-bold tabular text-pye-forest">
-                September 2024
+                سبتمبر 2024
               </div>
             </div>
             <div className="text-right">
-              <div className="text-[9px] font-bold uppercase tracking-[0.25em] text-pye-sky md:text-[10px]">
-                End · نهاية المشروع
+              <div className="text-[9px] font-bold text-pye-sky md:text-[10px]">
+                نهاية المشروع
               </div>
               <div className="mt-0.5 text-sm font-bold tabular text-pye-forest">
-                March 2026
+                مارس 2026
               </div>
             </div>
           </div>
@@ -963,6 +973,139 @@ function ImpactSlide({ idx, total }: { idx: number; total: number }) {
 }
 
 /* =========================================================================
+   FAKHOURI THANKS — dedicated premium page
+   ========================================================================= */
+function FakhoriThanksSlide({ idx, total }: { idx: number; total: number }) {
+  return (
+    <Slide
+      id="fakhouri-thanks"
+      index={idx}
+      total={total}
+      variant="white"
+      eyebrow="11 — شكر مجموعة الفاخوري"
+      decoration={
+        <CircuitPattern
+          className="right-[6%] bottom-16 h-[48vh] w-[36vw]"
+          variant="right"
+          opacity={0.22}
+        />
+      }
+    >
+      <div className="flex flex-col items-center text-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ amount: 0.4, once: true }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-8"
+        >
+          <BrandLogo type="fakhoury" size="lg" />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ amount: 0.4, once: true }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-pye-leaf/50 bg-pye-leaf/8 px-5 py-2 text-sm font-bold text-pye-forest">
+            الشريك الاستراتيجي
+          </div>
+          <h2 className="text-4xl font-black text-pye-forest md:text-6xl">
+            شكراً لمجموعة الفاخوري
+          </h2>
+          <p className="mt-3 text-lg font-medium text-pye-sky md:text-xl">
+            الشريك الاستراتيجي لمشروع PYE
+          </p>
+          <p className="mx-auto mt-8 max-w-2xl text-lg font-light leading-loose text-pye-ink/70 md:text-xl">
+            نتقدم بجزيل الشكر والتقدير إلى مجموعة الفاخوري، الشريك الاستراتيجي لمشروع PYE،
+            على مساهمتهم في دعم مسارات التدريب والتوظيف وتمكين الشباب وفتح آفاق جديدة نحو سوق العمل.
+          </p>
+        </motion.div>
+      </div>
+    </Slide>
+  );
+}
+
+/* =========================================================================
+   PARTNERS THANKS — companies + universities
+   ========================================================================= */
+function PartnersThanksSlide({ idx, total }: { idx: number; total: number }) {
+  const uniLogos = [
+    { src: "/JU.png", alt: "الجامعة الأردنية" },
+    { src: "/hu.png", alt: "الجامعة الهاشمية" },
+    { src: "/psut.png", alt: "جامعة الأميرة سمية للتكنولوجيا" },
+    { src: "/GJU_logo.svg.png", alt: "الجامعة الألمانية الأردنية" },
+    { src: "/meu.png", alt: "جامعة الشرق الأوسط" },
+    { src: "/Yarmouk_University_logo.png", alt: "جامعة اليرموك" },
+    { src: "/htu.png", alt: "جامعة الحسين التقنية" },
+  ];
+
+  return (
+    <Slide
+      id="partners-thanks"
+      index={idx}
+      total={total}
+      variant="paper"
+      eyebrow="12 — شكر الشركاء"
+      decoration={
+        <CircuitPattern
+          className="left-[6%] top-1/4 h-[44vh] w-[36vw]"
+          variant="left"
+          opacity={0.22}
+        />
+      }
+    >
+      <h2 className="text-3xl font-black text-pye-forest md:text-5xl">
+        شكراً لشركائنا من الشركات والجامعات
+      </h2>
+      <p className="mt-4 max-w-3xl text-base leading-relaxed text-pye-ink/70">
+        نتقدم بجزيل الشكر إلى الشركات الشريكة والجامعات الشريكة في مشروع PYE، على مساهمتهم في دعم مسارات التدريب والتوظيف وتمكين الشباب.
+      </p>
+
+      <div className="mt-10 grid gap-6 md:grid-cols-2">
+        {/* شركات شريكة */}
+        <div>
+          <div className="mb-3 flex items-center gap-3">
+            <span className="h-px w-8 bg-pye-leaf" />
+            <h3 className="text-sm font-bold uppercase tracking-[0.3em] text-pye-forest">
+              شركات شريكة
+            </h3>
+          </div>
+          <div className="overflow-hidden rounded-2xl border border-pye-fog bg-white p-5 shadow-sm">
+            <img
+              src="/brand/companies.jpg"
+              alt="الشركات الشريكة في مشروع مسارات توظيف الشباب"
+              className="mx-auto block max-h-[24vh] max-w-full object-contain"
+            />
+          </div>
+        </div>
+
+        {/* جامعات شريكة */}
+        <div>
+          <div className="mb-3 flex items-center gap-3">
+            <span className="h-px w-8 bg-pye-leaf" />
+            <h3 className="text-sm font-bold uppercase tracking-[0.3em] text-pye-forest">
+              جامعات شريكة
+            </h3>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-5 rounded-2xl border border-pye-fog bg-white p-5 shadow-sm">
+            {uniLogos.map((u) => (
+              <img
+                key={u.src}
+                src={u.src}
+                alt={u.alt}
+                className="h-10 w-auto object-contain opacity-80 hover:opacity-100 md:h-12"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </Slide>
+  );
+}
+
+/* =========================================================================
    CLOSING — formal branded sign-off
    ========================================================================= */
 function ClosingSlide({ idx, total }: { idx: number; total: number }) {
@@ -995,36 +1138,15 @@ function ClosingSlide({ idx, total }: { idx: number; total: number }) {
       </header>
 
       <div className="relative z-10 flex flex-col items-start gap-10">
+        <BrandLogo type="pye-particles" size="lg" />
 
-        {/* ── Sponsors — highest priority ─────────────────────────── */}
-        <div className="w-full max-w-3xl">
-          <div className="mb-1 flex items-center gap-3">
-            <BrandLogo type="pye-particles" size="sm" />
-          </div>
-          <h2 className="mt-4 text-3xl font-black text-pye-forest md:text-4xl">
-            شكراً لشركائنا والداعمين
-          </h2>
-          <p className="mt-2 mb-6 max-w-2xl text-sm text-pye-ink/60 leading-relaxed">
-            We extend our appreciation to the companies and partners supporting the PYE Project and contributing to youth employment pathways.
-          </p>
-          <div className="overflow-hidden rounded-2xl border border-pye-fog bg-white p-6 shadow-sm">
-            <img
-              src="/brand/companies.jpg"
-              alt="Sponsoring and supporting companies of the PYE Project — شركات داعمة لمشروع مسارات توظيف الشباب"
-              className="mx-auto block max-h-[38vh] max-w-full object-contain"
-            />
-          </div>
-        </div>
-
-        {/* ── General closing ──────────────────────────────────────── */}
         <div>
-          <h3 className="text-4xl font-black text-pye-forest md:text-5xl">شكرًا</h3>
-          <p className="mt-4 max-w-2xl text-xl font-light text-pye-ink/70 md:text-2xl">
+          <h2 className="text-5xl font-black text-pye-forest md:text-7xl">شكرًا</h2>
+          <p className="mt-6 max-w-2xl text-2xl font-light text-pye-ink/80 md:text-3xl">
             من التعلم إلى الفرصة — رحلة جاهزية الشباب.
           </p>
         </div>
 
-        {/* ── Contact ──────────────────────────────────────────────── */}
         <div className="grid w-full max-w-3xl gap-6 rounded-2xl border border-pye-fog bg-white p-8 shadow-sm md:grid-cols-3">
           <ContactBlock label="Email" value="info@loyac" />
           <ContactBlock label="Phone" value="+962 6 4636001" ltr />
