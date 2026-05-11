@@ -151,15 +151,13 @@ function CoverSlide({ idx, total }: { idx: number; total: number }) {
         />
       }
     >
-      {/* Top-aligned branded header — official partner lockup */}
-      <header className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-end gap-6 px-6 py-5 md:px-10 md:py-6">
-        <div className="flex items-end gap-5">
-          <BrandLogo type="loyac-en" size="sm" priority />
-          <span className="h-6 w-px bg-pye-ink/15" />
-          <BrandLogo type="loyac-ar" size="sm" priority />
-          <span className="h-6 w-px bg-pye-ink/15" />
-          <BrandLogo type="fakhoury" size="md" priority />
+      {/* Top branded header — Fakhori left, PYE center */}
+      <header className="pointer-events-none absolute inset-x-0 top-0 z-20 grid grid-cols-3 items-center px-6 py-5 md:px-10 md:py-6">
+        <BrandLogo type="fakhoury" size="md" priority />
+        <div className="flex justify-center">
+          <BrandLogo type="pye" size="sm" priority />
         </div>
+        <div />
       </header>
 
       {/* Dot grid behind hero */}
@@ -1125,16 +1123,13 @@ function ClosingSlide({ idx, total }: { idx: number; total: number }) {
       }
     >
 
-      {/* Top branded header (mirrors cover) */}
-      <header className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-end justify-between gap-6 px-6 py-5 md:px-10 md:py-6">
-        <div className="flex items-end gap-5">
-          <BrandLogo type="loyac-en" size="sm" />
-          <span className="h-6 w-px bg-pye-ink/15" />
-          <BrandLogo type="loyac-ar" size="sm" />
-          <span className="h-6 w-px bg-pye-ink/15" />
-          <BrandLogo type="fakhoury" size="md" />
+      {/* Top branded header — Fakhori left, PYE center */}
+      <header className="pointer-events-none absolute inset-x-0 top-0 z-20 grid grid-cols-3 items-center px-6 py-5 md:px-10 md:py-6">
+        <BrandLogo type="fakhoury" size="md" />
+        <div className="flex justify-center">
+          <BrandLogo type="pye" size="sm" />
         </div>
-        <BrandLogo type="pye" size="sm" />
+        <div />
       </header>
 
       <div className="relative z-10 flex flex-col items-start gap-10">

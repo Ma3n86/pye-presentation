@@ -51,15 +51,18 @@ export default function Slide({
           {decoration}
         </div>
       )}
-      {/* Branded header — LOYAC on one side, PYE on the other */}
+      {/* Branded header — Fakhori left, PYE center */}
       {showHeader && (
         <header
-          className={`pointer-events-none absolute inset-x-0 top-0 z-20 flex items-center justify-between px-6 py-5 md:px-10 md:py-6 ${
+          className={`pointer-events-none absolute inset-x-0 top-0 z-20 grid grid-cols-3 items-center px-6 py-5 md:px-10 md:py-6 ${
             isDark ? "[filter:invert(1)_hue-rotate(180deg)]" : ""
           }`}
         >
-          <BrandLogo type="loyac-en" size="sm" />
-          <BrandLogo type="pye" size="sm" />
+          <BrandLogo type="fakhoury" size="md" />
+          <div className="flex justify-center">
+            <BrandLogo type="pye" size="sm" />
+          </div>
+          <div />
         </header>
       )}
 
