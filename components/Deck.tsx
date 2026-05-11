@@ -148,7 +148,7 @@ function CoverSlide({ idx, total }: { idx: number; total: number }) {
       }
     >
       {/* Top-aligned branded header — official partner lockup */}
-      <header className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-end justify-between gap-6 px-6 py-5 md:px-10 md:py-6">
+      <header className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-end gap-6 px-6 py-5 md:px-10 md:py-6">
         <div className="flex items-end gap-5">
           <BrandLogo type="loyac-en" size="sm" priority />
           <span className="h-6 w-px bg-pye-ink/15" />
@@ -156,9 +156,6 @@ function CoverSlide({ idx, total }: { idx: number; total: number }) {
           <span className="h-6 w-px bg-pye-ink/15" />
           <BrandLogo type="fakhoury" size="md" priority />
         </div>
-        <span className="text-[11px] uppercase tracking-[0.3em] text-pye-ink/50 tabular">
-          July 2024 · Guidebook V.1
-        </span>
       </header>
 
       {/* Dot grid behind hero */}
@@ -359,8 +356,7 @@ function IdeaSlide({ idx, total }: { idx: number; total: number }) {
    ========================================================================= */
 function StagesSlide({ idx, total }: { idx: number; total: number }) {
   const stages = [
-    { en: "Registration", ar: "التسجيل" },
-    { en: "Interview", ar: "المقابلة" },
+    { en: "Registration & Interviews", ar: "التسجيل والمقابلات" },
     { en: "Soft Skills Training", ar: "المهارات الشخصية" },
     { en: "Technical Training", ar: "التدريب التقني" },
     { en: "Internship", ar: "التدريب العملي" },
@@ -386,7 +382,7 @@ function StagesSlide({ idx, total }: { idx: number; total: number }) {
         رحلة متكاملة تنقل المشارك من التسجيل حتى التخرج والانتقال إلى سوق العمل.
       </p>
 
-      <div className="mt-12 grid gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-6">
+      <div className="mt-12 grid gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-5">
         {stages.map((s, i) => (
           <motion.div
             key={s.en}
@@ -471,9 +467,16 @@ function TimelineSlide({ idx, total }: { idx: number; total: number }) {
     >
       {/* Title row — mirrors the reference */}
       <div dir="ltr" className="mb-14 flex items-start justify-between gap-4">
-        <h2 className="text-4xl font-black leading-tight text-pye-forest md:text-6xl">
-          Timeline Review
-        </h2>
+        <div>
+          <h2 className="text-4xl font-black leading-tight text-pye-forest md:text-6xl">
+            Timeline Review
+          </h2>
+          <p className="mt-2 text-sm font-medium text-pye-ink/50 tabular">
+            September 2024 – March 2026
+            <span className="mx-2 text-pye-sky/60">·</span>
+            <span dir="rtl">سبتمبر 2024 – مارس 2026</span>
+          </p>
+        </div>
         <BrandLogo type="fakhoury" size="md" />
       </div>
 
@@ -482,19 +485,22 @@ function TimelineSlide({ idx, total }: { idx: number; total: number }) {
         <div className="relative min-w-[640px]">
 
           {/* ── Cohort label row ─────────────────────────────────────── */}
-          <div className="mb-5 flex">
+          <div className="mb-6 flex">
             {cohorts.map((c, ci) => (
               <div
                 key={c.name}
                 style={{ flex: c.stages.length }}
                 className={`${ci > 0 ? "border-l-2 border-pye-forest/30 pl-3" : ""}`}
               >
-                <span className="text-sm font-bold tracking-wide text-pye-forest md:text-base">
+                <div className="text-xs font-bold uppercase tracking-[0.25em] text-pye-ink/45">
                   {c.name}
-                </span>
-                <span className="ml-2 tabular text-[10px] text-pye-ink/45">
-                  {c.count} مستفيد
-                </span>
+                </div>
+                <div className="mt-0.5 text-3xl font-black tabular text-pye-forest md:text-4xl">
+                  {c.count}
+                </div>
+                <div className="text-[10px] font-medium uppercase tracking-wide text-pye-ink/50">
+                  مستفيد
+                </div>
               </div>
             ))}
           </div>
@@ -553,11 +559,11 @@ function TimelineSlide({ idx, total }: { idx: number; total: number }) {
    ========================================================================= */
 function UniversitiesSlide({ idx, total }: { idx: number; total: number }) {
   const unis = [
-    { name: "الجامعة الأردنية", count: 217 },
     { name: "الجامعة الهاشمية", count: 242 },
+    { name: "الجامعة الأردنية", count: 217 },
     { name: "جامعة الأميرة سمية", count: 98 },
-    { name: "الجامعة الألمانية", count: 68 },
     { name: "جامعة اليرموك", count: 78 },
+    { name: "الجامعة الألمانية", count: 68 },
     { name: "جامعة الشرق الأوسط", count: 33 },
     { name: "جامعة الحسين التقنية", count: 10 },
   ];
@@ -976,35 +982,40 @@ function ClosingSlide({ idx, total }: { idx: number; total: number }) {
       </header>
 
       <div className="relative z-10 flex flex-col items-start gap-10">
-        <BrandLogo type="pye-particles" size="lg" />
 
-        <div>
-          <h2 className="text-5xl font-black text-pye-forest md:text-7xl">شكرًا</h2>
-          <p className="mt-6 max-w-2xl text-2xl font-light text-pye-ink/80 md:text-3xl">
-            من التعلم إلى الفرصة — رحلة جاهزية الشباب.
-          </p>
-        </div>
-
-        <div className="grid w-full max-w-3xl gap-6 rounded-2xl border border-pye-fog bg-white p-8 shadow-sm md:grid-cols-3">
-          <ContactBlock label="Email" value="info@loyac" />
-          <ContactBlock label="Phone" value="+962 6 4636001" ltr />
-          <ContactBlock label="Web" value="loyacjordan.org" ltr />
-        </div>
-
+        {/* ── Sponsors — highest priority ─────────────────────────── */}
         <div className="w-full max-w-3xl">
-          <h3 className="mb-2 text-2xl font-bold text-pye-forest">
+          <div className="mb-1 flex items-center gap-3">
+            <BrandLogo type="pye-particles" size="sm" />
+          </div>
+          <h2 className="mt-4 text-3xl font-black text-pye-forest md:text-4xl">
             شكراً لشركائنا والداعمين
-          </h3>
-          <p className="mb-5 text-sm text-pye-ink/65">
+          </h2>
+          <p className="mt-2 mb-6 max-w-2xl text-sm text-pye-ink/60 leading-relaxed">
             We extend our appreciation to the companies and partners supporting the PYE Project and contributing to youth employment pathways.
           </p>
           <div className="overflow-hidden rounded-2xl border border-pye-fog bg-white p-6 shadow-sm">
             <img
               src="/brand/companies.jpg"
               alt="Sponsoring and supporting companies of the PYE Project — شركات داعمة لمشروع مسارات توظيف الشباب"
-              className="mx-auto block max-h-[35vh] max-w-full object-contain"
+              className="mx-auto block max-h-[38vh] max-w-full object-contain"
             />
           </div>
+        </div>
+
+        {/* ── General closing ──────────────────────────────────────── */}
+        <div>
+          <h3 className="text-4xl font-black text-pye-forest md:text-5xl">شكرًا</h3>
+          <p className="mt-4 max-w-2xl text-xl font-light text-pye-ink/70 md:text-2xl">
+            من التعلم إلى الفرصة — رحلة جاهزية الشباب.
+          </p>
+        </div>
+
+        {/* ── Contact ──────────────────────────────────────────────── */}
+        <div className="grid w-full max-w-3xl gap-6 rounded-2xl border border-pye-fog bg-white p-8 shadow-sm md:grid-cols-3">
+          <ContactBlock label="Email" value="info@loyac" />
+          <ContactBlock label="Phone" value="+962 6 4636001" ltr />
+          <ContactBlock label="Web" value="loyacjordan.org" ltr />
         </div>
       </div>
     </Slide>
