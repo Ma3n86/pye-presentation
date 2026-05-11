@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --pye-ink: #282829;
+  --pye-paper: #F2F2F2;
+  --pye-forest: #275D38;
+  --pye-leaf: #00B74F;
+  --pye-lime: #7CAC2C;
+  --pye-mint: #A0DAB3;
+  --pye-pale: #E2F6BD;
+  --pye-sky: #4EC3E0;
+  --pye-fog: #DDE5ED;
+}
+
+html, body {
+  background: #ffffff;
+  color: var(--pye-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+html[dir="rtl"] body {
+  text-align: right;
+}
+
+/* Subtle dotted grid background — used sparingly on light slides */
+.dot-grid {
+  background-image: radial-gradient(rgba(78, 195, 224, 0.18) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Slide reveal helpers */
+.slide-section {
+  scroll-snap-align: start;
+}
+
+.slide-scroll {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar but keep functionality */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Number counter typography */
+.tabular { font-variant-numeric: tabular-nums; }
