@@ -151,13 +151,15 @@ function CoverSlide({ idx, total }: { idx: number; total: number }) {
         />
       }
     >
-      {/* Top branded header — Fakhori left, PYE center */}
-      <header className="pointer-events-none absolute inset-x-0 top-0 z-20 grid grid-cols-3 items-center px-6 py-5 md:px-10 md:py-6">
-        <BrandLogo type="fakhoury" size="md" priority />
+      {/* Top branded header — Fakhori left · PYE center · LOYAC right */}
+      <header className="pointer-events-none absolute inset-x-0 top-0 z-20 grid grid-cols-3 items-center px-6 py-4 md:px-10 md:py-5">
+        <BrandLogo type="fakhoury" size="hdr" priority />
         <div className="flex justify-center">
           <BrandLogo type="pye" size="sm" priority />
         </div>
-        <div />
+        <div className="flex justify-end">
+          <BrandLogo type="loyac-en" size="sm" priority />
+        </div>
       </header>
 
       {/* Dot grid behind hero */}
@@ -468,13 +470,15 @@ function TimelineSlide({ idx, total }: { idx: number; total: number }) {
         />
       }
     >
-      {/* Custom header: Fakhori logo left — PYE logo center */}
-      <header className="pointer-events-none absolute inset-x-0 top-0 z-20 grid grid-cols-3 items-center px-6 py-5 md:px-10 md:py-6">
-        <BrandLogo type="fakhoury" size="lg" />
+      {/* Header — Fakhori left · PYE center · LOYAC right */}
+      <header className="pointer-events-none absolute inset-x-0 top-0 z-20 grid grid-cols-3 items-center px-6 py-4 md:px-10 md:py-5">
+        <BrandLogo type="fakhoury" size="hdr" />
         <div className="flex justify-center">
           <BrandLogo type="pye" size="sm" />
         </div>
-        <div />
+        <div className="flex justify-end">
+          <BrandLogo type="loyac-en" size="sm" />
+        </div>
       </header>
 
       {/* Arabic title */}
@@ -1123,13 +1127,15 @@ function ClosingSlide({ idx, total }: { idx: number; total: number }) {
       }
     >
 
-      {/* Top branded header — Fakhori left, PYE center */}
-      <header className="pointer-events-none absolute inset-x-0 top-0 z-20 grid grid-cols-3 items-center px-6 py-5 md:px-10 md:py-6">
-        <BrandLogo type="fakhoury" size="md" />
+      {/* Header — Fakhori left · PYE center · LOYAC right */}
+      <header className="pointer-events-none absolute inset-x-0 top-0 z-20 grid grid-cols-3 items-center px-6 py-4 md:px-10 md:py-5">
+        <BrandLogo type="fakhoury" size="hdr" />
         <div className="flex justify-center">
           <BrandLogo type="pye" size="sm" />
         </div>
-        <div />
+        <div className="flex justify-end">
+          <BrandLogo type="loyac-en" size="sm" />
+        </div>
       </header>
 
       <div className="relative z-10 flex flex-col items-start gap-10">

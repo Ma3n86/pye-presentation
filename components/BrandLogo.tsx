@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 type LogoType = "loyac-ar" | "loyac-en" | "pye" | "pye-particles" | "fakhoury";
-type LogoSize = "sm" | "md" | "lg" | "xl";
+type LogoSize = "sm" | "md" | "hdr" | "lg" | "xl";
 
 type Props = {
   type: LogoType;
@@ -51,6 +51,7 @@ const ASSETS: Record<LogoType, { src: string; w: number; h: number; alt: string 
 const HEIGHTS: Record<LogoSize, { className: string; px: number }> = {
   sm: { className: "h-8 md:h-10", px: 40 },
   md: { className: "h-12 md:h-14", px: 56 },
+  hdr: { className: "h-[72px] md:h-[96px]", px: 96 },
   lg: { className: "h-20 md:h-28", px: 112 },
   xl: { className: "h-32 md:h-48 lg:h-56", px: 224 },
 };

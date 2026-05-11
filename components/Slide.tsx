@@ -51,18 +51,20 @@ export default function Slide({
           {decoration}
         </div>
       )}
-      {/* Branded header — Fakhori left, PYE center */}
+      {/* Branded header — Fakhori left · PYE center · LOYAC right */}
       {showHeader && (
         <header
-          className={`pointer-events-none absolute inset-x-0 top-0 z-20 grid grid-cols-3 items-center px-6 py-5 md:px-10 md:py-6 ${
+          className={`pointer-events-none absolute inset-x-0 top-0 z-20 grid grid-cols-3 items-center px-6 py-4 md:px-10 md:py-5 ${
             isDark ? "[filter:invert(1)_hue-rotate(180deg)]" : ""
           }`}
         >
-          <BrandLogo type="fakhoury" size="md" />
+          <BrandLogo type="fakhoury" size="hdr" />
           <div className="flex justify-center">
             <BrandLogo type="pye" size="sm" />
           </div>
-          <div />
+          <div className="flex justify-end">
+            <BrandLogo type="loyac-en" size="sm" />
+          </div>
         </header>
       )}
 
@@ -82,7 +84,7 @@ export default function Slide({
         initial={{ opacity: 0, y: 28 }}
         animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 28 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 mx-auto flex w-full max-w-6xl flex-col justify-center px-6 py-28 md:px-10 md:py-32"
+        className="relative z-10 mx-auto flex w-full max-w-6xl flex-col justify-center px-6 pt-36 pb-24 md:px-10 md:pt-44 md:pb-28"
       >
         {eyebrow && (
           <div className="mb-5 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.35em] text-pye-forest">
