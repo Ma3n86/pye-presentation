@@ -463,14 +463,14 @@ function TimelineSlide({ idx, total }: { idx: number; total: number }) {
               </div>
               <span className="text-xs tabular text-pye-ink/55">{c.count} مستفيد</span>
             </div>
-            <div className="flex flex-wrap items-center gap-3">
+            <div dir="ltr" className="flex flex-wrap items-center gap-x-3 gap-y-2">
               {stages.map((s, si) => (
                 <div key={s} className="flex items-center gap-3">
-                  <span className="rounded-full border border-pye-sky/50 bg-pye-sky/[0.08] px-4 py-2 text-sm text-pye-ink">
+                  <span className="whitespace-nowrap rounded-full border border-pye-sky/50 bg-pye-sky/[0.08] px-4 py-2 text-sm text-pye-ink">
                     {s}
                   </span>
                   {si < stages.length - 1 && (
-                    <span className="text-pye-sky">→</span>
+                    <span aria-hidden className="text-pye-sky" lang="en">→</span>
                   )}
                 </div>
               ))}
