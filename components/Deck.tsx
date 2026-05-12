@@ -538,7 +538,7 @@ function TimelineSlide({ idx, total }: { idx: number; total: number }) {
                   {c.count}
                 </div>
                 <div dir="rtl" className="text-[10px] font-medium text-pye-ink/50">
-                  مستفيد
+                  مشارك
                 </div>
               </div>
             ))}
@@ -623,7 +623,7 @@ function UniversitiesSlide({ idx, total }: { idx: number; total: number }) {
     { name: "جامعة اليرموك", count: 78 },
     { name: "الجامعة الألمانية", count: 68 },
     { name: "جامعة الشرق الأوسط", count: 33 },
-    { name: "جامعة الحسين التقنية", count: 10 },
+    { name: "جامعة الحسين التقنية", count: 26 },
   ];
   return (
     <Slide
@@ -631,7 +631,7 @@ function UniversitiesSlide({ idx, total }: { idx: number; total: number }) {
       index={idx}
       total={total}
       variant="white"
-      eyebrow="06 — الجامعات"
+      eyebrow="06 — الاستقطاب"
       decoration={
         <CircuitPattern
           className="left-1/4 bottom-12 h-[34vh] w-[40vw]"
@@ -648,7 +648,7 @@ function UniversitiesSlide({ idx, total }: { idx: number; total: number }) {
           <div className="mt-10 space-y-7">
             <Metric label="جامعات تم استقطابها" value={7} />
             <Metric label="المتقدمون" value={1323} />
-            <Metric label="العدد النهائي المقبول" value={475} accent />
+            <Metric label="العدد النهائي المقبول" value={762} accent />
           </div>
         </div>
 
