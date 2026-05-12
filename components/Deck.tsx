@@ -227,7 +227,7 @@ function CoverSlide({ idx, total }: { idx: number; total: number }) {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-6 max-w-xl text-2xl font-light leading-relaxed text-pye-ink/80 md:text-3xl"
           >
-            جاهزية الشباب لسوق العمل
+            كيف يمكن البناء على المعرفة التي يتعلّمها الشباب في جامعاتهم للوصول إلى جاهزية حقيقية لسوق العمل؟
           </motion.p>
 
         </div>
@@ -371,7 +371,7 @@ function IdeaSlide({ idx, total }: { idx: number; total: number }) {
       index={idx}
       total={total}
       variant="white"
-      eyebrow="03 — الفكرة"
+      eyebrow="03 — الهدف"
       decoration={
         <CircuitPattern
           className="left-[6%] top-1/4 h-[50vh] w-[38vw]"
@@ -394,10 +394,9 @@ function IdeaSlide({ idx, total }: { idx: number; total: number }) {
 function StagesSlide({ idx, total }: { idx: number; total: number }) {
   const stages = [
     { en: "Registration & Interviews", ar: "التسجيل والمقابلات" },
-    { en: "Soft Skills Training", ar: "المهارات الشخصية" },
+    { en: "Work Readiness Workshops", ar: "الورشات التحضيرية لسوق العمل" },
     { en: "Technical Training", ar: "التدريب التقني" },
     { en: "Internship", ar: "التدريب العملي" },
-    { en: "Graduation", ar: "التخرّج" },
   ];
   return (
     <Slide
@@ -416,10 +415,10 @@ function StagesSlide({ idx, total }: { idx: number; total: number }) {
     >
       <h2 className="text-4xl font-black text-pye-forest md:text-5xl">مراحل المشروع</h2>
       <p className="mt-3 max-w-2xl text-lg text-pye-ink/70">
-        رحلة متكاملة تنقل المشارك من التسجيل حتى التخرج والانتقال إلى سوق العمل.
+        رحلة متكاملة تنقل المشارك من التسجيل حتى التدريب العملي والانتقال إلى سوق العمل.
       </p>
 
-      <div className="mt-12 grid gap-x-6 gap-y-10 md:grid-cols-3 lg:grid-cols-5">
+      <div className="mt-12 grid gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-4">
         {stages.map((s, i) => (
           <motion.div
             key={s.en}
